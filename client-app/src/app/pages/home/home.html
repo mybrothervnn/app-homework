@@ -1,13 +1,19 @@
-<p>home works! chỉnh sửa ở phần HTML, lưu lại thì sẽ hiển thị trên web</p>
+<!-- <h2>{{ title }}</h2> -->
+ <h1>MENU</h1>
+<ol>
+    <li><a [routerLink]="[ '/', 'user-manual' ]" routerLinkActive="active">Hướng dẫn sử dụng hệ thống</a></li>    
+</ol>
 
+<h1>Teacher menu</h1>
+<ol>
+    <li><a [routerLink]="[ '/', 'exercises-manager' ]" routerLinkActive="active">Quản lý bài tập</a></li>    
+    <li><a [routerLink]="[ '/', 'pupil-manager' ]" routerLinkActive="active">Quản lý học sinh</a></li>    
+    <li><a [routerLink]="[ '/', 'quiz-manager' ]" routerLinkActive="active">Báo cáo</a></li>  
+</ol>
 
+<h1>Pupil</h1>
+<ol>   
+    <li><a [routerLink]="[ '/', 'quiz-manager' ]" routerLinkActive="active">Bảng điều khiển học sinh</a></li>
+    <li><a [routerLink]="[ '/', 'quiz' ]" routerLinkActive="active">Trang làm bài tập</a></li>
+</ol>
 
-
-
-<h1> sử dụng AI để tạo giao diện web - sử dụng Live Share để cùng trên 1 dự án</h1>
-<h1 class="mau-do"> Bum thêm dòng này</h1>.
-
-<h2>{{ title }}</h2>
-
- <a [routerLink]="[ '/', 'quiz-manager' ]" routerLinkActive="active">manager</a>
- <a [routerLink]="[ '/', 'quiz' ]" routerLinkActive="active">quiz</a>

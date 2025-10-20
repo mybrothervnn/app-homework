@@ -1,0 +1,38 @@
+<div class="exercises-manager-container mat-typography" style="max-width: 500px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+	<h2 style="color: #1976d2; display: flex; align-items: center; gap: 8px;">
+		<span class="material-icons" style="vertical-align: middle;">assignment</span>
+		Quản lý bài tập
+	</h2>
+	<form (ngSubmit)="createExercise()" #exerciseForm="ngForm" style="margin-top: 2rem;">
+			<div style="width: 100%; margin-bottom: 1.5rem; font-size: 1.1rem; color: #1976d2;">
+				<span style="font-weight: 500;">Lớp :</span> {{ classLevel }}
+			</div>
+
+		<mat-form-field appearance="outline" style="width: 100%; margin-bottom: 1.5rem;">
+			<mat-label>Môn học</mat-label>
+			<mat-select [(ngModel)]="selectedSubject" name="subject" (selectionChange)="onSubjectChange()">
+				<mat-option *ngFor="let subject of subjects" [value]="subject">{{ subject.name }}</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field appearance="outline" style="width: 100%; margin-bottom: 1.5rem;">
+			<mat-label>Bài học</mat-label>
+			<mat-select [(ngModel)]="selectedLesson" name="lesson" [disabled]="!selectedSubject">
+				<mat-option *ngFor="let lesson of lessons" [value]="lesson">{{ lesson }}</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field appearance="outline" style="width: 100%; margin-bottom: 1.5rem;">
+			<mat-label>Mô tả bài tập</mat-label>
+			<textarea matInput [(ngModel)]="exerciseDescription" name="description" rows="4" placeholder="Nêu phạm vi cụ thể để tạo câu hỏi trắc nghiệm (Chọn mục này thì có thể bỏ qua các mục trên):  
+Ví dụ: Toán 10 Tập 1 Kết nối tri thức với cuộc sống 
+		- Chương Hệ thức lượng trong tam giác 
+		- bài 5: Giá trị lượng giác của 1 góc từ 0 đến 180 độ.  " style="width: 100%;"></textarea>
+		</mat-form-field>
+
+		<button mat-raised-button color="primary" type="submit" [disabled]="isDisableBtn()">Tạo bài tập</button>
+	</form>
+
+	<div>{{ resultTest }}</div>
+
+</div>

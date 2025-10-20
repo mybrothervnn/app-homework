@@ -17,4 +17,12 @@ export class QuestionService {
     
     return result;
   }
+
+  public getQuestionsFullText(question: string): Observable<any> {
+    const url = `${this.apiUrl}?question=${encodeURIComponent(question)}}`;
+    let result = this.http.get(url);
+    console.log(result);
+    
+    return result;
+  }
 }
