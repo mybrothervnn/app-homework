@@ -91,7 +91,7 @@ export class Home3 implements OnInit {
    */
   simulateNavigation(target: string): void {
     // điều hướng đến trang tương ứng
-    //TODO
+    //TODO123
     this.router.navigate([target]);
     this.message.set(`Chuyển hướng đến chức năng: ${target}...`);
   }
