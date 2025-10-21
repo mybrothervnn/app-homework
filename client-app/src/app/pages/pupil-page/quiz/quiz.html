@@ -1,23 +1,29 @@
-<button [routerLink]="['/','home']">Back</button>
-<button (click)="nextQuestion()">Next Question</button>
-<div class="quiz-container">
-	<h2>{{ currQuestion.text }}</h2>
-	<ul>
-		<li *ngFor="let option of currQuestion.options; let i = index">
-			<button 
-				[disabled]="isAnswered"
-				(click)="selectOption(i)"
-				[ngClass]="{
-					'correct': isAnswered && i === currQuestion.answer,
-					'wrong': isAnswered && i  === selectedOption && i !== currQuestion.answer
-				}"
-			>
-				{{ option }}
-			</button>
-		</li>
-	</ul>
-	<div *ngIf="isAnswered">
-		<p *ngIf="selectedOption === currQuestion.answer" class="result correct">Chính xác!</p>
-		<p *ngIf="selectedOption !== currQuestion.answer" class="result wrong">Sai rồi, đáp án đúng là {{ currQuestion.options[currQuestion.answer] }}.</p>
+<div class="dashboard-container" style="padding: 24px;">
+	<h2>Trắc Nghiệm</h2>
+	<p>Xin chào, <span style="color: green;"><strong>{{ pupilService.currentPupil }}!</strong> </span></p>
+		
+	
+	<button mat-raised-button color="primary"  (click)="preQuestion()">Previous Question</button>
+	<button mat-raised-button color="primary"  (click)="nextQuestion()">Next Question</button>
+	<div class="quiz-container">
+		<h2>{{ currQuestion.text }}</h2>
+		<ul>
+			<li *ngFor="let option of currQuestion.options; let i = index">
+				<button 
+					[disabled]="isAnswered"
+					(click)="selectOption(i)"
+					[ngClass]="{
+						'correct': isAnswered && i === currQuestion.answer,
+						'wrong': isAnswered && i  === selectedOption && i !== currQuestion.answer
+					}"
+				>
+					{{ option }}
+				</button>
+			</li>
+		</ul>
+		<div *ngIf="isAnswered">
+			<p *ngIf="selectedOption === currQuestion?.answer" class="result correct">Chính xác!</p>
+			<p *ngIf="selectedOption !== currQuestion?.answer" class="result wrong">Sai rồi, đáp án đúng là {{ currQuestion?.options[currQuestion?.answer] }}.</p>
+		</div>
 	</div>
 </div>

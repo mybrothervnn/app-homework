@@ -1,19 +1,153 @@
-<!-- <h2>{{ title }}</h2> -->
- <h1>MENU</h1>
-<ol>
-    <li><a [routerLink]="[ '/', 'user-manual' ]" routerLinkActive="active">Hướng dẫn sử dụng hệ thống</a></li>    
-</ol>
+<!-- Header -->
+<header class="header-style">
+    <h1 style="font-size: 1.5rem; font-weight: 800;">Tạo Bài Quiz Nhanh</h1>
+</header>
 
-<h1>Teacher menu</h1>
-<ol>
-    <li><a [routerLink]="[ '/', 'exercises-manager' ]" routerLinkActive="active">Quản lý bài tập</a></li>    
-    <li><a [routerLink]="[ '/', 'pupil-manager' ]" routerLinkActive="active">Quản lý học sinh</a></li>    
-    <li><a [routerLink]="[ '/', 'quiz-manager' ]" routerLinkActive="active">Báo cáo</a></li>  
-</ol>
+<main style="display: flex; flex-direction: column; flex-grow: 1; align-items: center; padding: 16px 0;">
+    <div class="main-container">
+        <!-- Input Card -->
+        <div class="material-card">
+            <h2
+                style="font-size: 1.25rem; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; margin-bottom: 16px;">
+                Thông Tin Bộ Câu Hỏi
+            </h2>
 
-<h1>Pupil</h1>
-<ol>   
-    <li><a [routerLink]="[ '/', 'quiz-manager' ]" routerLinkActive="active">Bảng điều khiển học sinh</a></li>
-    <li><a [routerLink]="[ '/', 'quiz' ]" routerLinkActive="active">Trang làm bài tập</a></li>
-</ol>
+            <!-- Tiêu đề -->
+            <div style="margin-bottom: 16px; position: relative;">
+                <input type="text" [(ngModel)]="contentTitle" placeholder="Tiêu đề (ví dụ: Toán 7 - Tuần 1)"
+                    class="material-input" />
+            </div>
 
+            <!-- Chủ đề nội dung -->
+            <div style="margin-bottom: 16px; position: relative;">
+                <input type="text" [(ngModel)]="contentTopic" placeholder="Chủ đề (ví dụ: Tính chất tam giác cân)"
+                    class="material-input" />
+            </div>
+
+            <!-- Cài đặt -->
+            <h3 style="font-size: 1.125rem; font-weight: 500; color: #374151; margin-top: 24px; margin-bottom: 12px;">
+                Cài Đặt Bộ Quiz</h3>
+
+            <!-- Số lượng câu hỏi -->
+            <div class="setting-row">
+                <label for="num-questions"
+                    style="font-size: 0.875rem; font-weight: 500; color: #374151; display: flex; align-items: center;">
+                    <!-- Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-base">
+                        <path
+                            d="M7.5 7.5h.75v.75H7.5V7.5ZM7.5 10.5h.75v.75H7.5v-.75ZM7.5 13.5h.75v.75H7.5v-.75ZM7.5 16.5h.75v.75H7.5v-.75Z" />
+                        <path fill-rule="evenodd"
+                            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM6.75 8.25a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75v-.75Zm.75 3h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75v-.75a.75.75 0 0 1 .75-.75Zm-.75 3.75a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75v-.75Zm1.5 3.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v-.75ZM16.5 7.5a.75.75 0 0 0-1.5 0v.75a.75.75 0 0 0 1.5 0V7.5ZM15 11.25a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75H15.75a.75.75 0 0 1-.75-.75v-.75Zm.75 3h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75a.75.75 0 0 1 .75-.75Zm-5.25 3.75a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Số lượng Câu hỏi:
+                </label>
+                <input type="number" [(ngModel)]="numQuestions" min="1" max="10"
+                    style="width: 64px; padding: 8px; border: 1px solid #818cf8; border-radius: 8px; text-align: center; background-color: white;" />
+            </div>
+
+            <!-- Điểm Đạt (Pass) -->
+            <div class="setting-row">
+                <label for="pass-score"
+                    style="font-size: 0.875rem; font-weight: 500; color: #374151; display: flex; align-items: center;">
+                    <!-- Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-base">
+                        <path fill-rule="evenodd"
+                            d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Số câu đúng để Đạt (Pass):
+                </label>
+                <input type="number" [(ngModel)]="passingScore" min="1" [max]="numQuestions"
+                    style="width: 64px; padding: 8px; border: 1px solid #818cf8; border-radius: 8px; text-align: center; background-color: white;" />
+            </div>
+
+            <!-- Sử dụng thuộc tính thay vì function call() -->
+            <p style="font-size: 0.75rem; color: #ef4444; margin-top: 8px;" *ngIf="passingScore > numQuestions">
+                Số câu Đạt không thể lớn hơn Tổng số câu hỏi.
+            </p>
+
+            <!-- QR CODE-->
+            <div *ngIf="hasResult" id="qrcode" style="display: flex; flex-direction: column; align-items: center; margin-top: 24px;">
+                <p style="font-size: 0.875rem; color: #4b5563; margin-bottom: 12px;">Chia sẻ liên kết này hoặc mã QR cho
+                người làm bài:</p>
+                <qrcode #parent [elementType]="elementType" [qrdata]="urlResult" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                <div class="downloadButton">
+                    <button mat-raised-button color="primary" (click)="saveAsImage(parent)">
+                        Download QR Code Image
+                    </button>
+                    <!-- <a mat-raised-button color="primary" [href]="urlResult"
+                    download="angularx-qrcode">Download QR Code Image</a> -->
+                </div>
+            </div>
+
+            <!-- URL-->
+            <span *ngIf="hasResult" style="margin-top: 20px; display: flex; align-items: center; justify-content: center; flex-direction: column; ">
+                    <div style="width:100%;">
+                        <a style="margin-left: 12px;" [href]="urlResult" target="_blank">{{ urlResult }}</a>
+                    </div>
+                    <div>
+                        <button mat-raised-button [style]="'width: 110px'" color="primary" (click)="copyUrl()">Copy URL</button>
+                    </div>
+                </span>
+            
+            <!-- Nút Tạo Câu Hỏi -->
+            <button (click)="generateQuiz()" [disabled]="isLoading || !contentTopic" class="material-button primary">
+                <span *ngIf="!isLoading">TẠO BỘ CÂU HỎI NGAY</span>
+                <span *ngIf="isLoading" style="display: flex; align-items: center; justify-content: center;">
+                    <!-- Pure CSS Loading Spinner -->
+                    <div class="loading-spinner"></div>
+                    <span style="margin-left: 12px;">Đang tạo...</span>
+                </span>
+            </button>
+        </div>
+        
+
+        <!-- Message Box -->
+        <div *ngIf="message" class="message-box-base"
+            [ngClass]="{'success-message': messageType === 'success', 'error-message': messageType === 'error', 'info-message': messageType === 'info'}"
+            role="alert">
+            <p style="font-weight: bold;">{{ messageType === 'success' ? 'Thành công' : messageType === 'error' ? 'Lỗi'
+                : 'Thông báo' }}</p>
+            <p style="font-size: 0.875rem;">{{ message }}</p>
+        </div>
+
+        <!-- Menu Section -->
+        <div class="menu-section">
+            <h1>MENU</h1>
+            <ol>
+                <li><a [routerLink]="[ '/', 'user-manual' ]" routerLinkActive="active">Hướng dẫn sử dụng hệ thống</a>
+                </li>
+            </ol>
+
+            <h1>Teacher menu</h1>
+            <ol>
+                <li><a [routerLink]="[ '/', 'exercises-manage' ]" routerLinkActive="active">Quản lý bài tập</a></li>
+                <li><a [routerLink]="[ '/', 'pupil-manage' ]" routerLinkActive="active">Quản lý học sinh</a></li>
+                <li><a [routerLink]="[ '/', 'quiz-report-manage' ]" routerLinkActive="active">Báo cáo</a></li>
+            </ol>
+
+            <h1>Pupil</h1>
+            <ol>
+                <li><a [routerLink]="[ '/', 'quiz-manage' ]" routerLinkActive="active">Bảng điều khiển học sinh</a></li>
+                <li><a [routerLink]="[ '/', 'quiz' ]" routerLinkActive="active">Trang làm bài tập</a></li>
+            </ol>
+
+            <h1>Quét QR</h1>
+            <ol>
+                <li>
+                    <a [routerLink]="['/qr-scan-result']" [queryParams]="{ contentId: '123abc' }" routerLinkActive="active">Quét QR thử TEST</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer
+    style="padding: 12px; text-align: center; font-size: 0.75rem; color: #6b7280; border-top: 1px solid #e5e7eb; margin-top: 16px;">
+    Sử dụng Gemini API để tạo câu hỏi tự động.
+</footer>
+
+<!-- Script for QRCode.js (Tải bên ngoài) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>

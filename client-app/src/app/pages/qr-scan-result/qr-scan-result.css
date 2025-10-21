@@ -1,0 +1,7 @@
+.qr-container { max-width: 900px; margin: 2rem auto; }
+.question-block { padding: 1rem 0; border-bottom: 1px solid #eee; }
+.question-text { margin-bottom: 0.5rem; }
+mat-radio-button { display: block; margin: 6px 0; }
+.actions { margin-top: 1rem; }
+.loading { display:flex; justify-content:center; padding:2rem; }
+.summary { margin-top: 1rem; }

@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+/* --- BIẾN & THIẾT LẬP CHUNG (Mobile-First) --- */
+    :root {
+      --color-primary: #3f51b5; /* Indigo */
+      --color-accent: #ff4081; /* Pink */
+      --color-background: #f0f2f5; /* Light Gray Background */
+      --shadow-material: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    :host {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: var(--color-background);
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #333;
+    }
+
+    /* ======================================================= */
+    /* --- PHẦN 1: HERO HEADER (ĐÃ ĐIỀU CHỈNH TÔNG MÀU ĐẬM/TƯƠI TRẺ) --- */
+    /* ======================================================= */
+    .app-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .hero-header {
+      /* Thay đổi nền thành gradient đậm, tươi trẻ */
+      background: rgb(0, 153, 255);
+      background-size: cover;
+      background-position: center;
+      /* padding: 30px 20px 60px 20px;  */
+      height: 200px;
+      color: white; /* Đổi màu chữ sang trắng trên nền đậm */
+      position: relative;
+      /* Shadow rõ ràng hơn */
+      box-shadow: var(--shadow-material); 
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .app-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 0;
+      color: white; /* Đổi màu tên app sang trắng */
+    }
+    .login-button {
+      /* Nút Đăng nhập nổi bật trên nền đậm */
+      background-color: var(--color-accent); /* Màu Pink/Accent */
+      color: white; 
+      border: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      /* Tạo bóng cho nút nổi trên nền đậm */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s;
+    }
+    .login-button:hover {
+      background-color: #c51162; /* Màu đậm hơn khi hover */
+      color: white;
+    }
+
+    /* --- PHẦN 2: THANH MENU NGANG (Mobile Scrollable) --- */
+    .menu-bar-container {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .horizontal-menu {
+      /* Đặt Menu nằm trên góc của Hero Header */
+      margin-top: -30px; 
+      max-width: 600px;
+      margin: -30px auto 0 auto; 
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow-material);
+      overflow-x: auto; /* Cho phép cuộn ngang trên mobile */
+      white-space: nowrap;
+      padding: 10px 0;
+      
+      /* Ẩn thanh cuộn (cho mobile) */
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+    .horizontal-menu::-webkit-scrollbar {
+      display: none;
+    }
+
+    .menu-list {
+      display: flex;
+      padding: 0 10px;
+      margin: 0;
+      list-style: none;
+    }
+    .menu-item {
+      display: inline-block;
+      padding: 5px 10px;
+      text-align: center;
+      min-width: 80px; /* Đảm bảo đủ rộng cho icon/text */
+    }
+    .menu-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #616161;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .menu-link:hover {
+      color: var(--color-primary);
+    }
+    .menu-icon {
+      width: 28px;
+      height: 28px;
+      margin-bottom: 4px;
+      color: var(--color-primary);
+    }
+
+    /* --- PHẦN 3: NỘI DUNG CARD --- */
+    .content-area {
+      flex-grow: 1;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .card-grid {
+      display: grid;
+      gap: 15px;
+      /* Mặc định 1 cột trên Mobile */
+      grid-template-columns: 1fr; 
+    }
+
+    .content-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+    .content-card:hover {
+        transform: translateY(-3px);
+    }
+
+    /* Tiêu đề Card có nền màu nổi bật */
+    .card-highlight-title {
+      padding: 15px;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+    .card-body {
+      padding: 15px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .card-body h3 {
+        margin-top: 0;
+        margin-bottom: 5px;
+        font-size: 1.1rem;
+        color: #333;
+    }
+
+    /* --- PHẦN 4: FOOTER --- */
+    .app-footer {
+      padding: 15px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #757575;
+      border-top: 1px solid #e0e0e0;
+      background-color: white;
+      flex-shrink: 0;
+    }
+    
+    /* Responsive cho Tablet/Desktop */
+    @media (min-width: 600px) {
+      .card-grid {
+        /* Chuyển sang 2 cột trên màn hình rộng hơn */
+        grid-template-columns: repeat(2, 1fr); 
+      }
+    }

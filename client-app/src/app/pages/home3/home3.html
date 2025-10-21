@@ -1,0 +1,58 @@
+<!-- PHẦN 1: HERO HEADER -->
+    <header class="hero-header">
+      <div class="header-content">
+        <img src="assets/quiz-icon-16.jpg" alt="App Logo" class="app-logo" />
+        <h1 class="app-title">Quiz Creator</h1>
+        <button (click)="simulateLogin()" class="login-button">
+          Đăng nhập
+        </button>
+      </div>
+    </header>
+
+    <!-- PHẦN 2: THANH MENU NGANG -->
+    <div class="menu-bar-container">
+        <nav class="horizontal-menu">
+            <ul class="menu-list">
+                <li *ngFor="let item of menuItems" class="menu-item">
+                    <a href="#" class="menu-link" (click)="$event.preventDefault(); simulateNavigation(item.link)">
+                         <span class="material-symbols-outlined">
+                            {{ item.icon }}
+                        </span>
+                        <span>{{ item.name }}</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- PHẦN 3: NỘI DUNG CARD -->
+    <main class="content-area">
+        <h2 style="font-size: 1.4rem; margin-top: 0; margin-bottom: 20px; font-weight: 500;">Tính năng chính</h2>
+        
+        <div class="card-grid">
+            <div *ngFor="let card of contentCards" class="content-card">
+                <!-- Tiêu đề nổi bật theo màu -->
+                <div class="card-highlight-title" [style.background-color]="card.color">
+                    {{ card.title }}
+                </div>
+                
+                <div class="card-body">
+                    <h3>{{ card.subtitle }}</h3>
+                    <p>{{ card.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Box -->
+        <div *ngIf="message()" 
+              class="message-box" 
+              [class.info]="messageType() === 'info'"
+              style="margin-top: 30px;">
+          <p><strong>Thông báo:</strong> {{ message() }}</p>
+        </div>
+    </main>
+
+    <!-- PHẦN 4: FOOTER -->
+    <footer class="app-footer">
+      Quiz Creator - Công cụ tạo và quản lý bài tập nhanh chóng. Phiên bản Mobile 1.0
+    </footer>

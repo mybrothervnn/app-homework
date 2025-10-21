@@ -1,0 +1,22 @@
+<div class="dashboard-container" style="padding: 24px;">
+  <h2>Dashboard Quản lý câu hỏi trắc nghiệm</h2>
+    <p>Xin chào, <span style="color: green;"><strong>{{ pupilService.currentPupil }}!</strong> </span></p>
+    <p>Đây là danh sách các bài tập về nhà cùng trạng thái làm bài của bạn. Hãy làm bài tập đầy đủ nhé !</p>
+  <div class="subjects-grid" style="display: flex; flex-wrap: wrap; gap: 24px;">
+    <div
+      *ngFor="let subject of subjects"
+      class="subject-card mat-elevation-z4"
+      style="width: 260px; padding: 20px; border-radius: 12px; background: #fff; cursor: pointer; transition: box-shadow 0.2s;"
+      (click)="goToQuiz(subject.key)"
+    >
+      <h3 style="margin-top: 0;">{{ subject.name }}</h3>
+      <div style="margin: 12px 0;">
+        <span><strong>Tổng số câu hỏi:</strong> {{ subject.total }}</span><br>
+        <span><strong>Đã làm:</strong> {{ subject.done }}</span><br>
+        <span style="color: green;"><strong>Đúng:</strong> {{ subject.correct }}</span><br>
+        <span style="color: red;"><strong>Sai:</strong> {{ subject.incorrect }}</span>
+      </div>
+      <button mat-raised-button color="primary" style="width: 100%;">Làm bài {{ subject.name }}</button>
+    </div>
+  </div>
+</div>

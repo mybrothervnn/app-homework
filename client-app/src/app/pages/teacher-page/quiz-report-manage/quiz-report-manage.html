@@ -1,0 +1,61 @@
+<div class="quiz-report-manage" style="max-width: 900px; margin: 0 auto;">
+  <h2>Thống kê kết quả làm bài</h2>
+
+  <form (ngSubmit)="onFilter()" #filterForm="ngForm" class="filter-form" style="display: flex; gap: 16px; flex-wrap: wrap; align-items: end; margin-bottom: 24px;">
+    <mat-form-field appearance="outline" style="min-width: 160px;">
+      <mat-label>Lớp</mat-label>
+      <mat-select [(ngModel)]="selectedClass" name="class" required>
+        <mat-option *ngFor="let cls of classList" [value]="cls">{{ cls }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="min-width: 160px;">
+      <mat-label>Môn học</mat-label>
+      <mat-select [(ngModel)]="selectedSubject" name="subject" required>
+        <mat-option *ngFor="let subject of subjectList" [value]="subject">{{ subject }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="min-width: 160px;">
+      <mat-label>Từ ngày</mat-label>
+      <input matInput type="date" [(ngModel)]="fromDate" name="fromDate" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="min-width: 160px;">
+      <mat-label>Đến ngày</mat-label>
+      <input matInput type="date" [(ngModel)]="toDate" name="toDate" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Lọc</button>
+  </form>
+
+  <div *ngIf="reportData && reportData.length > 0" class="report-table" style="margin-top: 24px;">
+    <table mat-table [dataSource]="reportData" class="mat-elevation-z2" style="width: 100%;">
+      <ng-container matColumnDef="studentName">
+        <th mat-header-cell *matHeaderCellDef>Học sinh</th>
+        <td mat-cell *matCellDef="let report">{{ report.studentName }}</td>
+      </ng-container>
+      <ng-container matColumnDef="class">
+        <th mat-header-cell *matHeaderCellDef>Lớp</th>
+        <td mat-cell *matCellDef="let report">{{ report.class }}</td>
+      </ng-container>
+      <ng-container matColumnDef="subject">
+        <th mat-header-cell *matHeaderCellDef>Môn học</th>
+        <td mat-cell *matCellDef="let report">{{ report.subject }}</td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Ngày làm bài</th>
+        <td mat-cell *matCellDef="let report">{{ report.date | date:'dd/MM/yyyy' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef>Điểm số</th>
+        <td mat-cell *matCellDef="let report">{{ report.score }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['studentName', 'class', 'subject', 'date', 'score']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['studentName', 'class', 'subject', 'date', 'score'];"></tr>
+    </table>
+  </div>
+  <div *ngIf="reportData && reportData.length === 0" style="margin-top: 24px;">
+    <mat-card>
+      <mat-card-content>
+        <p>Không có dữ liệu phù hợp.</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

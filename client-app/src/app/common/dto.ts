@@ -149,16 +149,16 @@ export const quizCategories: QuizCategoryDto[] = [
     { id: 3, name: 'History', description: 'Quizzes focused on historical events and figures.' },
 ];
 
-// 10.Quiz Manager
-export interface QuizManagerDto {
+// 10.Quiz manage
+export interface QuizmanageDto {
     id: number;
     name: string;
     managedQuizzes: number[]; // Array of Quiz IDs
 }
 
-export const quizManagers: QuizManagerDto[] = [
-    { id: 1, name: 'Manager A', managedQuizzes: [1, 2] },
-    { id: 2, name: 'Manager B', managedQuizzes: [3] },
+export const quizmanages: QuizmanageDto[] = [
+    { id: 1, name: 'manage A', managedQuizzes: [1, 2] },
+    { id: 2, name: 'manage B', managedQuizzes: [3] },
 ];
 
 // 11.Quiz Assignment

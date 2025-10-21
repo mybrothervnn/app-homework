@@ -9,14 +9,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { QuestionService } from '../../../services/question.service';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 
 @Component({
-  selector: 'app-exercises-manager',
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatSnackBarModule, MatIconModule, MatInputModule],
-  templateUrl: './exercises-manager.html',
-  styleUrl: './exercises-manager.css'
+  selector: 'app-exercises-manage',
+  imports: [CommonModule, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatSnackBarModule, MatIconModule, MatInputModule,
+    MatTableModule,MatTabsModule,
+  ],
+  templateUrl: './exercises-manage.html',
+  styleUrl: './exercises-manage.css'
 })
-export class ExercisesManager {
+export class Exercisesmanage {
   public resultTest = '';
   public classLevel = '10';
   subjects = [
@@ -28,10 +32,10 @@ export class ExercisesManager {
   selectedSubject: any = null;
   lessons: string[] = [];
   selectedLesson: string | null = null;
-  exerciseDescription: string = '';
-  question: string = `Toán 10 Tập 1 Kết nối tri thức với cuộc sống 
+  exercisesDescription: string = `Toán 10 Tập 1 Kết nối tri thức với cuộc sống 
 		- Chương Hệ thức lượng trong tam giác 
 		- bài 5: Giá trị lượng giác của 1 góc từ 0 đến 180 độ.`;
+  question: string = '';
 
 
   onSubjectChange() {
@@ -42,9 +46,7 @@ export class ExercisesManager {
   constructor(private snackBar: MatSnackBar, private apiService: QuestionService, private cdr: ChangeDetectorRef) {}
 
   createExercise() {    
-    if (this.selectedLesson) this.question = 'Tạo câu hỏi trắc nghiệm về bài học: ' + this.selectedLesson + ' thuộc môn ' + this.selectedSubject.name + ' lớp ' + this.classLevel;
-    if (this.exerciseDescription) this.question = this.exerciseDescription;
-
+    this.question = 'Tạo câu hỏi trắc nghiệm về bài học: ' + this.selectedLesson + ' thuộc môn ' + this.selectedSubject.name + ' lớp ' + this.classLevel;
     this.apiService.getQuestionsFullText(this.question).subscribe({
         next: (data) => {
           this.resultApi(data);
@@ -53,13 +55,8 @@ export class ExercisesManager {
           console.error('There was an error!', error);
         }
       });
-    // Giả lập tạo bài tập thành công
-
-    // this.snackBar.open('Bài tập đã được tạo thành công!', 'Đóng', {
-    //   duration: 2000,
-    //   panelClass: ['mat-toolbar', 'mat-primary']
-    // });
   }
+
   resultApi(data: any) {
     this.resultTest = JSON.stringify(data);
     this.cdr.detectChanges();
@@ -72,8 +69,19 @@ export class ExercisesManager {
   }
 
   isDisableBtn() {
-    if (this.exerciseDescription) return false;
+    if (this.exercisesDescription) return false;
     if (this.selectedLesson) return false;
     return true;
+  }
+
+  createExercisesByText(){
+    this.apiService.getQuestionsFullText(this.exercisesDescription).subscribe({
+        next: (data) => {
+          this.resultApi(data);
+        },
+        error: (error) => {
+          console.error('There was an error!', error);
+        }
+      });
   }
 }

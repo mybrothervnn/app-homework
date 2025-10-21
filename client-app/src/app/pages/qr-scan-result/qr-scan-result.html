@@ -1,0 +1,56 @@
+<div class="qr-container mat-typography">
+	<mat-card *ngIf="!loading && !error">
+		<mat-card-header>
+			<mat-card-title>Quiz</mat-card-title>
+			<mat-card-subtitle *ngIf="contentId">Mã bài: {{ contentId }}</mat-card-subtitle>
+			<mat-card-subtitle *ngIf="contentId">Tiêu đề: {{ contentTitle }}</mat-card-subtitle>
+			<mat-card-subtitle *ngIf="contentId">Chủ đề: <span style="font-size: 16px; font-weight: bold;">{{ contentTopic }}</span></mat-card-subtitle>
+			<mat-card-subtitle *ngIf="contentId">Số câu hỏi: {{ numQuestions }}</mat-card-subtitle>
+			<mat-card-subtitle *ngIf="contentId">Số câu cần pass: {{ passingScore }}</mat-card-subtitle>
+		</mat-card-header>
+
+		<mat-card-content>
+			<div *ngIf="questions.length === 0">Không có câu hỏi.</div>
+
+			<div *ngFor="let q of questions; let i = index" class="question-block">
+				<div class="question-text">
+					<strong>{{ i + 1 }}.</strong> {{ q.text }}
+				</div>
+
+				<mat-radio-group [(ngModel)]="answers[i]" (change)="selectAnswer(i, answers[i])">
+					<mat-radio-button *ngFor="let opt of q.options; let oi = index" [value]="oi">
+						{{ opt }}
+					</mat-radio-button>
+				</mat-radio-group>
+
+				<div class="result" *ngIf="submitted">
+					<mat-icon *ngIf="answers[i] === q.answer" color="primary">check_circle</mat-icon>
+					<mat-icon *ngIf="answers[i] !== q.answer" color="warn">cancel</mat-icon>
+					<span *ngIf="answers[i] !== q.answer">Đáp án đúng: {{ q.options[q.answer] }}</span>
+				</div>
+			</div>
+
+			<div class="actions">
+				<button mat-raised-button color="primary" (click)="submit()" [disabled]="submitted || questions.length===0">Nộp bài</button>
+			</div>
+
+			<div class="summary" *ngIf="submitted">
+				<h3>Kết quả</h3>
+				<p>Đúng: {{ score }} / {{ questions.length }}</p>
+				<p>Tỷ lệ: {{ (score/questions.length*100) | number:'1.0-0' }}%</p>
+			</div>
+		</mat-card-content>
+	</mat-card>
+
+	<div *ngIf="loading" class="loading">
+		<mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+	</div>
+
+	<div *ngIf="error" class="error">
+		<mat-card>
+			<mat-card-content>
+				<p>{{ error }}</p>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>
