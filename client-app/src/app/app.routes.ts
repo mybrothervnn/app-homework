@@ -16,7 +16,7 @@ import { QuizReportmanageComponent } from './pages/teacher-page/quiz-report-mana
 import { QuizManage } from './pages/pupil-page/quiz-manage/quiz-manage';
 
 export const routes: Routes = [
-	//Menu
+	//Menu - test Dang Nhan 2025/10/22
 	{
 		path: 'home',
 		component: Home
