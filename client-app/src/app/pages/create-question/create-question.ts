@@ -11,7 +11,7 @@ import { MatAnchor } from "@angular/material/button";
 declare const QRCode: any
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-create-question',
   imports: [
     RouterModule,
     FormsModule,
@@ -19,15 +19,15 @@ declare const QRCode: any
     QRCodeComponent,
     MatAnchor
   ],
-  templateUrl: './home.html',
-  styleUrl: './home.css',
+  templateUrl: './create-question.html',
+  styleUrl: './create-question.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Home {
+export class CreateQuestion {
   contentTitle: string = 'Tin học lớp 10 - tuần 4';
   contentTopic: string = 'Hệ nhị phân và dữ liệu số nguyên.';
-  numQuestions: number = 5;
-  passingScore: number = 4;
+  numQuestions: number = 20;
+  passingScore: number = 14;
   isLoading: boolean = false;
   hasResult: boolean = false;
   urlResult: string = '';

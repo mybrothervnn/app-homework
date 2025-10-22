@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { QuizComponent } from './pages/pupil-page/quiz/quiz';
 import { App } from './app';
 import { QuizThanh1 } from './pages/pupil-page/quiz-thanh-1/quiz-thanh-1';
-import { Home } from './pages/home/home';
+import { CreateQuestion } from './pages/create-question/create-question';
 import { Home1 } from './pages/home1/home1';
 import { Home2 } from './pages/home2/home2';
 import { Home3 } from './pages/home3/home3';
@@ -18,8 +18,8 @@ import { QuizManage } from './pages/pupil-page/quiz-manage/quiz-manage';
 export const routes: Routes = [
 	//Menu - test Dang Nhan 2025/10/22
 	{
-		path: 'home',
-		component: Home
+		path: 'create-question',
+		component: CreateQuestion
 	},
 	{
 		path: 'home1',
