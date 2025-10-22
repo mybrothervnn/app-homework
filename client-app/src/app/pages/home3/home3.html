@@ -30,7 +30,7 @@
         <h2 style="font-size: 1.4rem; margin-top: 0; margin-bottom: 20px; font-weight: 500;">Tính năng chính</h2>
         
         <div class="card-grid">
-            <div *ngFor="let card of contentCards" class="content-card">
+            <div *ngFor="let card of contentCards" class="content-card" (click)="simulateNavigation(card.link)">
                 <!-- Tiêu đề nổi bật theo màu -->
                 <div class="card-highlight-title" [style.background-color]="card.color">
                     {{ card.title }}
@@ -54,5 +54,6 @@
 
     <!-- PHẦN 4: FOOTER -->
     <footer class="app-footer">
-      Quiz Creator - Công cụ tạo và quản lý bài tập nhanh chóng. Phiên bản Mobile 1.0
+      <div>Quiz Creator - Công cụ tạo và quản lý bài tập nhanh chóng. Phiên bản Mobile 1.0 </div>
+      <div>Nguyễn Đăng Nhân - 10 Toán Tin - Trường PTTH Chuyên Khoa Học Huế</div>
     </footer>

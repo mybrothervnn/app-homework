@@ -15,6 +15,7 @@ interface ContentCard {
   subtitle: string;
   description: string;
   color: string;
+  link?: string;
 }
 
 @Component({
@@ -33,10 +34,10 @@ export class Home3 implements OnInit {
 
   // --- Data Dữ liệu mẫu ---
   menuItems: MenuItem[] = [
-    { name: 'Tạo Nhanh', icon: 'qr_code_2_add', link:'qr-scan-result' }, 
+    { name: 'Tạo Nhanh', icon: 'qr_code_2_add', link:'create-question' }, 
     { name: 'Lớp Học', icon: 'school', link:'pupil-manage' }, 
     { name: 'Thống Kê', icon: 'grouped_bar_chart' , link:'quiz-report-manage' }, 
-    { name: 'Hồ Sơ', icon: '3p', link:'user-manual' }, 
+    { name: 'Hồ Sơ', icon: '3p', link:'exercises-manage' }, 
     { name: 'Hướng Dẫn', icon: 'assistant_direction', link:'user-manual' } 
   ];
 
@@ -45,25 +46,29 @@ export class Home3 implements OnInit {
       title: 'Tạo Quiz miễn phí', 
       subtitle: 'Chế độ tạo câu hỏi cho mọi người.', 
       description: 'Chỉ cần nhập chủ đề và tạo câu hỏi, bạn sẽ nhận ngay QR code để chia sẻ qua Zalo, Messenger mà không cần đăng nhập.', 
-      color: '#4CAF50' 
+      color: '#4CAF50',
+      link:'create-question'
     },
     { 
       title: 'Quản Lý Lớp Học', 
       subtitle: 'Dành riêng cho Giáo viên.', 
-      description: 'Yêu cầu đăng nhập. Tạo bài tập hằng ngày cho các lớp,yêu cầu học sinh làm bài tập và thống kê kết quả làm bài chi tiết của từng học sinh.', 
-      color: '#2196F3' 
+      description: 'Yêu cầu đăng nhập. Tạo bài tập hằng ngày cho các lớp,yêu cầu học sinh làm bài tập và thống kê kết quả làm bài chi tiết của từng học sinh. (Đang phát triển ...)', 
+      color: '#2196F3',
+      link:'pupil-manage'
     },
     { 
       title: 'Kho Bài Tập', 
       subtitle: 'Tìm kiếm và sử dụng lại.', 
-      description: 'Truy cập thư viện các bài tập đã tạo và chia sẻ từ cộng đồng để sử dụng ngay lập tức.', 
-      color: '#FF9800' 
+      description: 'Truy cập thư viện các bài tập đã tạo và chia sẻ từ cộng đồng để sử dụng ngay lập tức. (Đang phát triển ...)', 
+      color: '#FF9800',
+
     },
     { 
       title: 'Báo Cáo Chi Tiết', 
       subtitle: 'Phân tích kết quả học tập.', 
-      description: 'Xem báo cáo về điểm số, thời gian làm bài, và các câu hỏi học sinh thường sai để đưa ra đánh giá chính xác.', 
-      color: '#9C27B0' 
+      description: 'Xem báo cáo về điểm số, thời gian làm bài, và các câu hỏi học sinh thường sai để đưa ra đánh giá chính xác. (Đang phát triển)', 
+      color: '#9C27B0' ,
+      link:'quiz-report-manage'
     }
   ];
 
@@ -89,10 +94,13 @@ export class Home3 implements OnInit {
    * Giả lập chức năng Điều hướng Menu.
    * @param target Tên chức năng được click
    */
-  simulateNavigation(target: string): void {
+  simulateNavigation(target: string | undefined): void {
     // điều hướng đến trang tương ứng
-    //TODO123
-    this.router.navigate([target]);
-    this.message.set(`Chuyển hướng đến chức năng: ${target}...`);
+    if (target) {
+      this.router.navigate([target]);
+      this.message.set(`Chuyển hướng đến chức năng: ${target}...`);
+    } else {
+      this.message.set(`Chức năng không xác định.`);
+    }
   }
 }
